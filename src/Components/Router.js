@@ -16,7 +16,7 @@ const LoggedoutRoutes = () => (
   </>
 );
 
-const AppRouter = ({ isLoggedIn }) => (
+const AppRouter = isLoggedIn => (
   <Router>
     <Switch>{isLoggedIn ? <LoggedInRoutes /> : <LoggedoutRoutes />}</Switch>
   </Router>
