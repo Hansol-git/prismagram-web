@@ -1,8 +1,10 @@
 import React from "react";
 import { gql } from "apollo-boost";
+import Helmet from "react-helmet";
 import { useQuery } from "react-apollo-hooks";
 import Loader from "../Components/Loader";
 import styled from "styled-components";
+import Post from "../Components/Post";
 
 const FEED_QUERY = gql`
   {
@@ -21,7 +23,7 @@ const FEED_QUERY = gql`
       }
       likeCount
       isLiked
-      comments {
+      comment {
         id
         text
         user {
@@ -43,5 +45,29 @@ const Wrapper = styled.div`
 
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
-  return <Wrapper>{loading ? <Loader /> : <div>Done!</div>}</Wrapper>;
+  return (
+    <Wrapper>
+      <Helmet>
+        <title>Feed | Prismagram</title>
+      </Helmet>
+      {loading && <Loader />}{" "}
+      {!loading &&
+        data &&
+        data.seeFeed &&
+        data.seeFeed.map(post => (
+          <Post
+            key={post.id}
+            id={post.id}
+            user={post.user}
+            files={post.files}
+            likeCount={post.likeCount}
+            isLiked={post.isLiked}
+            comment={post.comment}
+            caption={post.caption}
+            location={post.location}
+            createdAt={post.createdAt}
+          />
+        ))}
+    </Wrapper>
+  );
 };

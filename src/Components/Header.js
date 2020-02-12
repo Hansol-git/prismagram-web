@@ -4,8 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
 import { Compass, HeartEmpty, InstagramLogo, UserEmpty } from "./Icon";
-import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
+import { MEQUERY } from "../SharedQueries";
 
 const Header = styled.header`
   width: 100%;
@@ -18,6 +18,7 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   padding: 25px 0px;
+  z-index: 2;
 `;
 
 const HeaderWrapper = styled.div`
@@ -60,14 +61,6 @@ const HeaderLink = styled(Link)`
   }
 `;
 
-const MEQUERY = gql`
-  {
-    me {
-      username
-    }
-  }
-`;
-
 export default withRouter(({ history }) => {
   const search = useInput("");
   const { data } = useQuery(MEQUERY);
@@ -85,7 +78,11 @@ export default withRouter(({ history }) => {
         </HeaderColumn>
         <HeaderColumn>
           <form onSubmit={onSearchSubmit}>
-            <SearchInput {...search} placeholder="Search" />
+            <SearchInput
+              value={search.value}
+              onChange={search.onChange}
+              placeholder="Search"
+            />
           </form>
         </HeaderColumn>
         <HeaderColumn>

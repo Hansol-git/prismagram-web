@@ -33,7 +33,7 @@ export default () => {
         <GlobalStyle />
         <Router>
           <>
-            <Header />
+            {isLoggedin && <Header />}
             <Wrapper>
               <AppRouter isLoggedin={isLoggedin} />
               <Footer />
