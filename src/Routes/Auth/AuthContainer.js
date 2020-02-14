@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 
 export default () => {
   const [action, setAction] = useState("logIn");
-
   const username = useInput("");
   const firstName = useInput("");
   const lastName = useInput("");
@@ -92,6 +91,7 @@ export default () => {
           } = await confirmSecretMutation();
           if (token !== "" && token !== undefined) {
             localLogInMutation({ variables: { token } });
+            console.log("local token save query requested!");
           } else {
             throw Error();
           }

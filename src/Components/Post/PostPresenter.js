@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
+import { Link } from "react-router-dom";
 import FatText from "../FatText";
 import Avatar from "../Avatar";
 import { HeartFull, HeartEmpty, MessageEmpty } from "../Icon";
@@ -11,6 +12,9 @@ const Post = styled.div`
   max-width: 600px;
   margin-bottom: 25px;
   user-select: none;
+  a {
+    color: inherit;
+  }
 `;
 
 const Header = styled.div`
@@ -34,7 +38,7 @@ const Files = styled.div`
   padding-bottom: 100%;
   display: flex;
   flex-direction: column;
-  aligh-items: stretch;
+  align-items: stretch;
   flex-shrink: 0;
 `;
 
@@ -118,14 +122,21 @@ export default ({
     <Header>
       <Avatar size="sm" url={avatar} />
       <UserColumn>
-        <FatText text={username} />
-        <Location>{location}</Location>
+        <Link to={`/${username}`}>
+          <FatText text={username} />
+          <Location>{location}</Location>
+        </Link>
       </UserColumn>
     </Header>
     <Files>
       {files &&
         files.map((file, index) => (
-          <File id={file.id} src={file.url} showing={index === currentItem} />
+          <File
+            key={file.id}
+            id={file.id}
+            src={file.url}
+            showing={index === currentItem}
+          />
         ))}
     </Files>
     <Meta>

@@ -44,6 +44,7 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
+  console.log("Feed query start!");
   const { data, loading } = useQuery(FEED_QUERY);
   return (
     <Wrapper>

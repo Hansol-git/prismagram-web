@@ -4,7 +4,7 @@ import { HashRouter as Router } from "react-router-dom";
 import { gql } from "apollo-boost";
 import GlobalStyle from "../Styles/GlobalStyle";
 import Theme from "../Styles/Theme";
-import AppRouter from "./Routes";
+import Routes from "./Routes";
 import { useQuery } from "react-apollo-hooks";
 import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,23 +19,24 @@ const Wrapper = styled.div`
 
 const QUERY = gql`
   {
-    isLoggedin @client
+    isLoggedIn @client
   }
 `;
 
 export default () => {
   const {
-    data: { isLoggedin }
+    data: { isLoggedIn }
   } = useQuery(QUERY);
+  console.log("is Logged in ?", isLoggedIn);
   return (
     <ThemeProvider theme={Theme}>
       <>
         <GlobalStyle />
         <Router>
           <>
-            {isLoggedin && <Header />}
+            {isLoggedIn && <Header />}
             <Wrapper>
-              <AppRouter isLoggedin={isLoggedin} />
+              <Routes isLoggedIn={isLoggedIn} />
               <Footer />
             </Wrapper>
           </>
