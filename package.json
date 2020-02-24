@@ -40,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://myprismagram.netlify.com"
+  "homepage": "https://myprismagram.netlify.com",
+  "devDependencies": {
+    "gh-pages": "2.2.0"
+  }
 }
