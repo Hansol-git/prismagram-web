@@ -16,7 +16,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
     "react-toastify": "^5.5.0",
-    "styled-components": "^5.0.1",
+    "styled-components": "4.4.1",
     "styled-reset": "^4.1.0"
   },
   "scripts": {
@@ -40,8 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://myprismagram.netlify.com",
-  "devDependencies": {
-    "gh-pages": "2.2.0"
-  }
+  "homepage": "https://myprismagram.netlify.com"
 }
